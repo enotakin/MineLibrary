@@ -1,0 +1,9 @@
+name: MineLibrary
+version: @version@
+api-version: 1.16
+author: Enotakin
+
+main: com.enotakin.library.MineLibraryPlugin
+
+depend:
+  - ProtocolLib
