@@ -34,4 +34,8 @@ public final class MineAPI {
         return getPlugin().createTag(entity);
     }
 
+    public static  <T> void registerCommand(Plugin plugin, Class<T> command) {
+        getPlugin().registerCommand(plugin, command);
+    }
+
 }
