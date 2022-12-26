@@ -2,6 +2,26 @@
 Library for Minecraft. Allows you to easily work with configs, create packet entities without using Bukkit and NMS.
 Easy and understandable work with Scoreboard API, creation of entities on packets.
 
+### Command API
+<b>Usage:</b>
+```
+@Command("gamemode")
+@Aliases({"gm"})
+@Permission("minelibrary.command.gamemode")
+public class GameModeCommand {
+
+    @CommandHandler
+    public void handle(CommandSender sender, @Argument GameMode gameMode) {
+        Bukkit.getPlayerExact(sender.getName()).setGameMode(gameMode);
+        sender.sendMessage(String.format("Game mode changed to %s.", gameMode.name()));
+    }
+}
+```
+
+```
+MineAPI.registerCommand(this, new GameModeCommand());
+```
+
 ### Entity API
 ![Entity Example](images/entities.gif)
 

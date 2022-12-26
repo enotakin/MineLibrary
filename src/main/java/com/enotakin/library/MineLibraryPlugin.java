@@ -3,6 +3,7 @@ package com.enotakin.library;
 import com.enotakin.library.api.MinePlugin;
 import com.enotakin.library.api.entity.*;
 import com.enotakin.library.api.nametag.NameTag;
+import com.enotakin.library.command.CommandManager;
 import com.enotakin.library.entity.EntityManager;
 import com.enotakin.library.entity.type.*;
 import com.enotakin.library.menu.MenuListener;
@@ -13,6 +14,7 @@ import com.google.common.base.Preconditions;
 import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,6 +29,7 @@ public class MineLibraryPlugin extends JavaPlugin implements MinePlugin {
     public void onEnable() {
         registerManager(new NameTagManager(this));
         registerManager(new EntityManager(this));
+        registerManager(new CommandManager());
 
         Server server = getServer();
 
@@ -97,4 +100,9 @@ public class MineLibraryPlugin extends JavaPlugin implements MinePlugin {
         throw new IllegalStateException("Unable to create '" + entityClass.getSimpleName() + "', unknown entity!");
     }
 
+    @Override
+    public <T> void registerCommand(Plugin plugin, Class<T> command) {
+        CommandManager commandManager = getManager(CommandManager.class);
+        commandManager.registerCommand(plugin, command);
+    }
 }
